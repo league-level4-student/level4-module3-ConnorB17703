@@ -1,11 +1,11 @@
 package _02_gotta_catchem_all;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 
-class ExceptionsTest {
+public class ExceptionsTest {
 	ExceptionMethods em = new ExceptionMethods();
 	
 	//1. This is an example of how one might test that an exception is thrown.
@@ -20,7 +20,7 @@ class ExceptionsTest {
 			vars[4] = 5;
 			fail("IndexOutOfBoundsException not thrown");
 		}catch(IndexOutOfBoundsException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			assertArrayEquals(vars, new int[] {4, 1, 2, 3});
 		}
 	}
@@ -33,6 +33,15 @@ class ExceptionsTest {
 	@Test
 	public void testDivideByZeroException() {
 		
+		try{
+			assertEquals(10, ExceptionMethods.divide(20, 2), 0.001);
+			
+			assertEquals(20, ExceptionMethods.divide(40, 0), 0.001);
+			fail("IllegalArguemntException was not thrown");
+		
+		}catch(IllegalArgumentException e){
+			assertEquals(10, ExceptionMethods.divide(20, 2), 0.001);
+		}
 	}
 	
 	//4. In the ExceptionMethods class, write a method called reverseString that takes a
@@ -42,7 +51,15 @@ class ExceptionsTest {
 	//5. Complete the JUnit test method to test the reverseStringMethod.
 	@Test
 	public void testReverseString() {
-		
+		try{
+			assertEquals("sirap", ExceptionMethods.reverseString("paris"));
+			
+			assertEquals("asdfsa", ExceptionMethods.reverseString(""));
+			fail("IllegalArgumentException was not thrown");
+		}catch(IllegalArgumentException e){
+			assertEquals("sirap", ExceptionMethods.reverseString("paris"));
+
+		}
 	}
 	
 	
